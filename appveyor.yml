@@ -42,9 +42,9 @@ build_script:
   - CD c:\projects\bukdu_jl
   - IF EXIST .git\shallow (git fetch --unshallow)
   - C:\projects\julia\bin\julia --color=yes -e "using Pkg; Pkg.REPLMode.pkgstr(\"add HTTP\")"
-  #- C:\projects\julia\bin\julia --color=yes -e "using Pkg; Pkg.REPLMode.pkgstr(\"add JSON2\")"
-  #- C:\projects\julia\bin\julia --color=yes -e "using Pkg; Pkg.REPLMode.pkgstr(\"add URIParser\")"
-  #- C:\projects\julia\bin\julia --color=yes -e "using Pkg; Pkg.REPLMode.pkgstr(\"add Documenter\")"
+  # - C:\projects\julia\bin\julia --color=yes -e "using Pkg; Pkg.REPLMode.pkgstr(\"add JSON2\")"
+  # - C:\projects\julia\bin\julia --color=yes -e "using Pkg; Pkg.REPLMode.pkgstr(\"add URIParser\")"
+  # - C:\projects\julia\bin\julia --color=yes -e "using Pkg; Pkg.REPLMode.pkgstr(\"add Documenter\")"
   - C:\projects\julia\bin\julia --color=yes -e "using Bukdu"
 
 test_script:

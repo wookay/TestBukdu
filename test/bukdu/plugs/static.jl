@@ -7,7 +7,6 @@ routes(:a) do
     plug(Plug.Static, at="/hello", from=normpath(@__DIR__, "."))
 end
 result = Router.call(get, "/hello/static.jl")
-@info :result1 String(result.got.body)
 @test startswith(String(result.got.body), "module test_bukdu_plugs_static")
 Routing.empty!()
 
@@ -15,7 +14,6 @@ routes(:b) do
     plug(Plug.Static, at="/", from=normpath(@__DIR__, "."))
 end
 result = Router.call(get, "/static.jl")
-@info :result2 String(result.got.body)
 @test startswith(String(result.got.body), "module test_bukdu_plugs_static")
 Routing.empty!()
 
@@ -23,7 +21,6 @@ routes(:c) do
     plug(Plug.Static, at="/", from=normpath(@__DIR__, "."), only=["static.jl"])
 end
 result = Router.call(get, "/static.jl")
-@info :result3 String(result.got.body)
 @test startswith(String(result.got.body), "module test_bukdu_plugs_static")
 @test Router.call(get, "/csrf_protection.jl").resp.status == 404
 Routing.empty!()
@@ -33,9 +30,6 @@ routes(:d) do
 end
 
 resp = Router.call(get, "/a.html").resp
-@info :resp resp
-@info :resp_status resp.status
-
 @test Router.call(get, "/a.html").resp.status == 200
 @test Router.call(get, "/b.wasm").resp.status == 200
 Routing.empty!()
