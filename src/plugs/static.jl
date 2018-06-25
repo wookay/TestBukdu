@@ -21,12 +21,15 @@ end
     plug(::Type{Static}; at::String, from::String, only::Union{Vector{String},Nothing}=nothing, indexfile="index.html")
 """
 function plug(::Type{Static}; at::String, from::String, only::Union{Vector{String},Nothing}=nothing, indexfile="index.html")
-
+    @info :from1 from
     function _readfile_base(c::StaticController, f)
         reqpath = c.conn.request.target
         offset = isdirpath(at) ? 1 : 2
         targetpath = reqpath[length(at)+offset:end]
         filepath = joinpath(f(from, targetpath)...)
+        @info :from from
+        @info :targetpath targetpath
+        @info :filepath filepath
         (_, fileext) = splitext(filepath)
         ext = lowercase(fileext)
         Render(content_type_for_file_extionsion(ext), read(filepath))
