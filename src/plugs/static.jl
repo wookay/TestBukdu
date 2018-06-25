@@ -56,6 +56,7 @@ function plug(::Type{Static}; at::String, from::String, only::Union{Vector{Strin
                  get(reqindex, StaticController, readindexfile)
              end
              reqpath = normpath(at, subpath, filename)
+             @info :reqpath_________ (reqpath, at, subpath, filename)
              get(reqpath, StaticController, readfile)
         end
     end
